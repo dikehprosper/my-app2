@@ -94,7 +94,7 @@ const BetZeroSection = () => {
 
                 <div className='f35'>
                     <div className='f36'>Max Payout
-                        <div className='f40'><input className='f37' type="text" value="0222" /></div>
+                        <div className='f40'><input className='f37' type="text" value="0" /></div>
                         
                     </div>
                     <div className='f36'>Total stake

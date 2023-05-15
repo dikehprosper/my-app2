@@ -22,11 +22,44 @@ const Countdown = () => {
                 setActiveButton(prevButton => prevButton + 1);
             } else {
                 clearInterval(interval);
+                setTimeout(() => {
+                    fetchData();
+                }, 3000);
+                restartCountdown();
             }
         }, 1000);
 
-        return () => clearInterval(interval);
-    }, []);
+        return () => {
+            clearInterval(interval);
+        };
+    }, [count]);
+
+    const fetchData = async () => {
+        try {
+            // Make the request here
+            // Example using fetch API
+            const response = await fetch('your-api-endpoint');
+            // Check if the response was successful
+            if (response.ok) {
+                // Process the successful response here
+                // ...
+            } else {
+                // Handle the error response here
+                // ...
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            // Handle the error here
+        }
+    };
+
+    const restartCountdown = () => {
+        setCount(49);
+        setActiveButton(0);
+    };
+
+
+
 
     const renderButtons = () => {
         const buttons = [];
@@ -51,7 +84,3 @@ const Countdown = () => {
 };
 
 export default Countdown;
-
-              
-              
-        
