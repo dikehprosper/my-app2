@@ -10,6 +10,100 @@ const Home = () => {
   const [show, setShow] = useState(true);
   const [showState, setShowState] = useState(true);
   const [ball, setBall] = useState([]);
+ const [triggerUpdateState, setTriggerUpdateState] = useState(false);
+  const [ball1, setBall1] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [ball2, setBall2] = useState([]);
+  const [ball3, setBall3] = useState();
+
+  useEffect(() => {
+    if (!triggerUpdateState) {
+      // Make the request here
+      const url = 'http://localhost:5000/fetch-data';
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Request failed');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Value from backend:', data);
+          const ballValues = data.balls.slice(0, 6);
+          const ballValues1 = data.statistics.slice(0, 1);
+          // Assign the extracted values to the setBall function
+        
+       
+
+          const numberArray = ballValues.map((str) => parseInt(str));
+          const numberArray1 = ballValues1.map((str) => parseInt(str));
+          const numberArray2 = data.statistics2.map((str) => parseInt(str));
+          const numberArray3 = data.statistics3.map((str) => parseInt(str));
+          const numberArray4 = data.statistics4.map((str) => parseInt(str));
+          const numberArray5 = data.statistics5.map((str) => parseInt(str));
+
+          setBall(numberArray);
+          console.log(numberArray, numberArray1)
+        
+          setBall2(data);
+          setHotNumbers(numberArray2);
+          setColdNumbers(numberArray3);
+          setHotNumbersFrequency(numberArray4);
+          setColdNumbersFrequency(numberArray5);
+          // Do something with the retrieved value here
+        })
+        .catch(error => {
+          console.error('Error:', error.message);
+          // Handle the error appropriately
+        });
+    }
+  }, [triggerUpdateState]);
+  
+
+  // useEffect(() => {
+  //   if (!triggerUpdateState) {
+  //     // // Generate 6 random numbers from 1 to 48
+  //     // const randomNumbers = Array.from(
+  //     //   { length: 6 },
+  //     //   () => Math.floor(Math.random() * 49) + 1
+  //     // );
+  //     setBall([12, 13, 14, 45, 31, 29]);
+  //   }
+  // }, [triggerUpdateState]);
+  // console.log(ball);
+
+ 
+
+  useEffect(() => {
+    if (triggerUpdateState && currentIndex < ball.length) {
+      setTimeout(() => {
+        setBall1((prevBall) => {
+          const newNumber = ball[currentIndex];
+          const lastNumber = prevBall[prevBall.length - 1];
+
+          if (newNumber !== lastNumber && !prevBall.includes(newNumber)) {
+            return [...prevBall, newNumber];
+          }
+          return prevBall;
+        });
+
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+      }, 500);
+      setBall3(ball2)
+      // Delay between each number update
+    } else if (!triggerUpdateState) {
+      setTimeout(() => {
+        setBall1([]);
+        setCurrentIndex(0);
+      }, 7000); // Wait for 5 seconds after triggerUpdateState is set to false
+    }
+  }, [triggerUpdateState, currentIndex]);
+
+
+
+ 
+
+
   const [hotNumbers, setHotNumbers] = useState([]);
   const [hotNumbersFrequency, setHotNumbersFrequency] = useState([]);
   const [coldNumbers, setColdNumbers] = useState([]);
@@ -19,44 +113,47 @@ const Home = () => {
   const [coldNumbers1, setColdNumbers1] = useState([]);
   const [coldNumbersFrequency1, setColdNumbersFrequency1] = useState([]);
 
-  const [triggerUpdateState, setTriggerUpdateState] = useState(false);
-
-  useEffect(() => {
-    if (!triggerUpdateState) {
-      // Generate 6 random numbers from 1 to 48
-      const randomNumbers = Array.from(
-        { length: 6 },
-        () => Math.floor(Math.random() * 49) + 1
-      );
-      setBall(randomNumbers);
-    }
-  }, [triggerUpdateState]);
-  console.log(ball);
-
-
 
   // To get Hot Numbers
   useEffect(() => {
     const storedHotNumbers1 = localStorage.getItem("hotNumbers1");
     if (storedHotNumbers1) {
-      setHotNumbers1([49, 32, 31, 43, 12]);
+      setHotNumbers1(JSON.parse(storedHotNumbers1));
     }
   }, []);
 
 
   useEffect(() => {
-    // Generate 6 random numbers from 1 to 20
-    const randomNumbers = Array.from(
-      { length: 5 },
-      () => Math.floor(Math.random() * 49) + 1
-    );
-    setHotNumbers(randomNumbers);
-
     if (triggerUpdateState) {
       setHotNumbers1(hotNumbers);
       localStorage.setItem("hotNumbers1", JSON.stringify(hotNumbers));
     }
+ 
   }, [triggerUpdateState]);
+
+
+
+
+  // To get Cold Numbers
+  useEffect(() => {
+
+    if (triggerUpdateState) {
+      setColdNumbers1(coldNumbers);
+      localStorage.setItem("coldNumbers1", JSON.stringify(coldNumbers));
+    }
+  }, [triggerUpdateState]);
+
+
+
+  useEffect(() => {
+    const storedColdNumbers1 = localStorage.getItem("coldNumbers1");
+    if (storedColdNumbers1) {
+      setColdNumbers1(JSON.parse(storedColdNumbers1));
+    }
+  }, []);
+
+
+
 
   // To get Hot Numbers Frequency
   useEffect(() => {
@@ -69,12 +166,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    // Generate 6 random numbers from 1 to 20
-    const randomNumbers = Array.from(
-      { length: 5 },
-      () => Math.floor(Math.random() * 49) + 1
-    );
-    setHotNumbersFrequency(randomNumbers);
+   
 
     if (triggerUpdateState) {
       setHotNumbersFrequency1(hotNumbersFrequency);
@@ -85,45 +177,15 @@ const Home = () => {
     }
   }, [triggerUpdateState]);
 
-  // To get Cold Numbers
-  useEffect(() => {
-    const storedColdNumbers1 = localStorage.getItem("coldNumbers1");
-    if (storedColdNumbers1) {
-      setColdNumbers1(JSON.parse(storedColdNumbers1));
-    }
-  }, []);
+ 
 
-  useEffect(() => {
-    // Generate 6 random numbers from 1 to 20
-    const randomNumbers = Array.from(
-      { length: 5 },
-      () => Math.floor(Math.random() * 49) + 1
-    );
-    setColdNumbers(randomNumbers);
 
-    if (triggerUpdateState) {
-      setColdNumbers1(coldNumbers);
-      localStorage.setItem("coldNumbers1", JSON.stringify(coldNumbers));
-    }
-  }, [triggerUpdateState]);
+
+
+
 
   // To get Cold Numbers Frequency
   useEffect(() => {
-    const storedColdNumbersFrequency1 = localStorage.getItem(
-      "coldNumbersFrequency1"
-    );
-    if (storedColdNumbersFrequency1) {
-      setColdNumbersFrequency1(JSON.parse(storedColdNumbersFrequency1));
-    }
-  }, []);
-
-  useEffect(() => {
-    // Generate 6 random numbers from 1 to 20
-    const randomNumbers = Array.from(
-      { length: 5 },
-      () => Math.floor(Math.random() * 49) + 1
-    );
-    setColdNumbersFrequency(randomNumbers);
 
     if (triggerUpdateState) {
       setColdNumbersFrequency1(coldNumbersFrequency);
@@ -133,6 +195,22 @@ const Home = () => {
       );
     }
   }, [triggerUpdateState]);
+
+  useEffect(() => {
+    const storedColdNumbersFrequency1 = localStorage.getItem(
+      "coldNumbersFrequency1"
+    );
+    if (storedColdNumbersFrequency1) {
+      setColdNumbersFrequency1(JSON.parse(storedColdNumbersFrequency1));
+    }
+  }, []);
+
+
+
+
+
+
+
 
 
   function display() {
@@ -156,6 +234,15 @@ const Home = () => {
   const handleClick1 = () => {
     setBackgroundColor1((prev) => !prev);
   };
+
+
+
+
+
+
+
+
+  
 
   // Countdown section
 
@@ -247,31 +334,7 @@ const Home = () => {
     return buttons;
   };
 
-  const [ball1, setBall1] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(-1);
-
-  useEffect(() => {
-    if (triggerUpdateState && currentIndex < ball.length) {
-      setTimeout(() => {
-        setBall1((prevBall) => {
-          const newNumber = ball[currentIndex];
-          const lastNumber = prevBall[prevBall.length - 1];
-
-          if (newNumber !== lastNumber && !prevBall.includes(newNumber)) {
-            return [...prevBall, newNumber];
-          }
-          return prevBall;
-        });
-
-        setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, 500); // Delay between each number update
-    } else if (!triggerUpdateState) {
-      setTimeout(() => {
-        setBall1([]);
-        setCurrentIndex(-2);
-      }, 7000); // Wait for 5 seconds after triggerUpdateState is set to false
-    }
-  }, [triggerUpdateState, currentIndex]);
+ 
 
   return (
     <div className="body">
@@ -296,12 +359,14 @@ const Home = () => {
             handleClick={handleClick}
           />
         ) : (
-          <Body3 />
+            <Body3
+              ball3= {ball3} />
         )}
       </div>
       <CountDown count={49} renderButtons={renderButtons} />
       <Draw
         ball={ball}
+        ball3={ball3}
         triggerUpdateState={triggerUpdateState}
         count={count}
         ball1={ball1}

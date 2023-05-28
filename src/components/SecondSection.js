@@ -11,30 +11,36 @@ import BetZeroSection from './BetZeroSection'
 
 const Body2 = (props) => {
 
-    return (<div style={{ display: "flex", width: "100%" }}>
+    return (<div style={{ display: "flex", width: "100%", height: "585px", marginBottom: "2px" }}>
         <div style={{ display: "flex", width: "77.5%", flexDirection: "column", height: "" }}>
             <div className='f0'>
-                <div >
+                <div className='f11'>
                     <img src={image4} alt="logo" className='f1 f2' />
+                    <div className='f12'></div>
                 </div>
-                <div>
+                <div className='f11'>
                     <img src={image5} alt="logo" className='f1 f3' />
+                    <div className='f12'></div>
                 </div>
-                <div>
+                <div className='f11'>
                     <img src={image6} alt="logo" className='f1 f4' />
+                    <div className='f12'></div>
                 </div>
-                <div>
+                <div className='f11'>
                     <img src={image7} alt="logo" className='f1 f5' />
+                    <div className='f12'></div>
                 </div>
-                <div>
+                <div className='f11'>
                     <img src={image8} alt="logo" className='f1 f6' />
+                    <div className='f12'></div>
                 </div>
                 <div onClick={() => {
                     props.changeShowState();
                     props.handleClick()
-                }}>
+                    
+                }} className='f11'>
                     {props.backgroundColor ? <img src={image9} alt="logo" className='f1 f7' /> : <img src={image16} alt="logo" className='f18' />}
-    
+                    <div className='f12-1'></div>
                 </div>
             </div>
             {

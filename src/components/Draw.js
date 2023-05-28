@@ -40,7 +40,6 @@ const Box = ({ number, animate, triggerUpdateState, ball }) => {
 
 
 
-
     return (
         <div
             className={`box ${animationClass}`}
@@ -57,7 +56,7 @@ const Box = ({ number, animate, triggerUpdateState, ball }) => {
                 transform: triggerUpdateState ? 'translateX(0)' : 'translateX(-100%)', // Modify the transform based on triggerUpdateState
             }}
         >
-            {number}
+            <span className='spin'> {number}</span>
         </div>
     );
 };
@@ -68,7 +67,18 @@ const Box = ({ number, animate, triggerUpdateState, ball }) => {
 
 
 
-const Draw = ({ triggerUpdateState, ball, count, ball1 }) => {
+const Draw = ({ triggerUpdateState, ball, count, ball1, ball3 }) => {
+
+    const CurrentDraw = () => {
+        if (ball3) {
+            const ballValue1 = ball3.statistics.slice(0, 1);
+            const numberArray1 = ballValue1.map((str) => parseInt(str));
+            return numberArray1
+        } else {
+            return "987654"
+        }
+    }
+
 
     function checkCount() {
         if (count - 4 <= 5 && count - 4 >= 0) {
@@ -105,7 +115,7 @@ const Draw = ({ triggerUpdateState, ball, count, ball1 }) => {
             <div id="draw9"> <img src={image21} alt="" />
             </div>
 
-            <div id="draw4">Current draw: 9876543</div>
+            <div id="draw4">Current draw: {CurrentDraw()}</div>
             <div id="draw10">{count - 4}</div>
             <div id="draw11" className={`imageBackground ${checkCount2()}`}></div>
             <div id="draw13" ></div>

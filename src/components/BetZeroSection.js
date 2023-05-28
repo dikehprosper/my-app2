@@ -49,7 +49,7 @@ const BetZeroSection = () => {
                     <div className='f27'>
                         {balls.map((ball, index) => {
                             const color = colors[index % colors.length];
-                            return <div className='f28' key={ball} style={{ backgroundColor: color }}>{ball}</div>
+                            return <div className='f28' key={ball} style={{ backgroundColor: color, border: `3px solid ${color}` }}>{ball}</div>
                         })}
 
                     </div>
@@ -59,6 +59,8 @@ const BetZeroSection = () => {
                 </div>
                 <div8 className='f25'>
                     <img src={image12} alt="" />
+                    <div className='f121-12'></div>
+                    <div className='f121-13'></div>
                 </div8>
             </div>
             <div className='f22'>
