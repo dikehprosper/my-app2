@@ -69,6 +69,7 @@ const Box = ({ number, animate, triggerUpdateState, ball }) => {
 
 const Draw = ({ triggerUpdateState, ball, count, ball1, ball3 }) => {
 
+
     const CurrentDraw = () => {
         if (ball3) {
             const ballValue1 = ball3.statistics.slice(0, 1);
@@ -98,7 +99,7 @@ const Draw = ({ triggerUpdateState, ball, count, ball1, ball3 }) => {
         }
     }
 
-
+    console.log(ball1) 
     return (
         <div id="draw">
             <div className="draw2">

@@ -1,11 +1,11 @@
 import React from 'react'
 import Table from './Table'
 
-const Body3 = ({ ball3 }) => {
+const Body3 = ({ ball3, show }) => {
 
-   
+
     return (
-        <div style={{ display: "flex", flexDirection: "column", width: "100%", marginRight: "22px", backgroundColor: "black", height: "585px", marginBottom: "2px" }}>
+        <div style={{ display: `${show ? "none" : "flex"}`, flexDirection: "column", width: "100%", marginRight: "22px", backgroundColor: "black", height: "585px", marginBottom: "2px" }}>
             <div className='f130'>
                 <div className='f1301'>
                     {/* {props.backgroundColor ? <img src={image9} alt="logo" className='f1 f7' /> : <img src={image16} alt="logo" className='f18' />}

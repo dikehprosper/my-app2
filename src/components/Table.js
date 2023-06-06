@@ -4,154 +4,523 @@ import React, { useEffect, useState } from 'react';
 
 
 const Table = ({ball}) => {
-    const [ball3, setBall3] = useState(ball);
-    console.log(ball)
+    const [ball3, setBall3] = useState(ball ? ball : {
+        "balls": [
+            "35",
+            "40",
+            "15",
+            "8",
+            "37",
+            "7",
+            "25",
+            "1",
+            "36",
+            "15",
+            "5",
+            "46",
+            "24",
+            "42",
+            "28",
+            "31",
+            "3",
+            "36",
+            "26",
+            "18",
+            "27",
+            "40",
+            "13",
+            "3",
+            "43",
+            "23",
+            "28",
+            "34",
+            "38",
+            "32",
+            "7",
+            "42",
+            "15",
+            "11",
+            "49",
+            "46",
+            "47",
+            "27",
+            "36",
+            "6",
+            "37",
+            "20",
+            "33",
+            "3",
+            "38",
+            "41",
+            "26",
+            "24",
+            "11",
+            "2",
+            "46",
+            "34",
+            "17",
+            "28",
+            "9",
+            "24",
+            "33",
+            "14",
+            "1",
+            "37"
+        ],
+        "statistics": [
+            "3730787",
+            "3540158377",
+            "",
+            "",
+            "312",
+            "142",
+            "3730786",
+            "2513615546",
+            "",
+            "",
+            "321",
+            "128",
+            "3730785",
+            "24422831336",
+            "",
+            "",
+            "240",
+            "164",
+            "3730784",
+            "26182740133",
+            "",
+            "",
+            "231",
+            "127",
+            "3730783",
+            "432328343832",
+            "",
+            "none",
+            "303",
+            "198",
+            "3730782",
+            "74215114946",
+            "",
+            "none",
+            "221",
+            "170",
+            "3730781",
+            "47273663720",
+            "",
+            "",
+            "132",
+            "173",
+            "3730780",
+            "33338412624",
+            "",
+            "none",
+            "033",
+            "165",
+            "3730779",
+            "11246341728",
+            "",
+            "none",
+            "303",
+            "138",
+            "3730778",
+            "9243314137",
+            "",
+            "",
+            "231",
+            "118",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "statistics1": [
+            "312",
+            "321",
+            "240",
+            "231",
+            "303",
+            "221",
+            "132",
+            "033",
+            "303",
+            "231"
+        ],
+        "statistics2": [
+            "12",
+            "19",
+            "22",
+            "45",
+            "48"
+        ],
+        "statistics3": [
+            "3",
+            "27",
+            "37",
+            "42",
+            "46"
+        ],
+        "statistics4": [
+            "20",
+            "18",
+            "20",
+            "19",
+            "20"
+        ],
+        "statistics5": [
+            "6",
+            "6",
+            "5",
+            "6",
+            "5"
+        ]
+    });
 
     useEffect(() => {
-        setBall3(ball)
-    }, [])
+        setBall3(ball ? ball : {
+            "balls": [
+                "35",
+                "40",
+                "15",
+                "8",
+                "37",
+                "7",
+                "25",
+                "1",
+                "36",
+                "15",
+                "5",
+                "46",
+                "24",
+                "42",
+                "28",
+                "31",
+                "3",
+                "36",
+                "26",
+                "18",
+                "27",
+                "40",
+                "13",
+                "3",
+                "43",
+                "23",
+                "28",
+                "34",
+                "38",
+                "32",
+                "7",
+                "42",
+                "15",
+                "11",
+                "49",
+                "46",
+                "47",
+                "27",
+                "36",
+                "6",
+                "37",
+                "20",
+                "33",
+                "3",
+                "38",
+                "41",
+                "26",
+                "24",
+                "11",
+                "2",
+                "46",
+                "34",
+                "17",
+                "28",
+                "9",
+                "24",
+                "33",
+                "14",
+                "1",
+                "37"
+            ],
+            "statistics": [
+                "3730787",
+                "3540158377",
+                "",
+                "",
+                "312",
+                "142",
+                "3730786",
+                "2513615546",
+                "",
+                "",
+                "321",
+                "128",
+                "3730785",
+                "24422831336",
+                "",
+                "",
+                "240",
+                "164",
+                "3730784",
+                "26182740133",
+                "",
+                "",
+                "231",
+                "127",
+                "3730783",
+                "432328343832",
+                "",
+                "none",
+                "303",
+                "198",
+                "3730782",
+                "74215114946",
+                "",
+                "none",
+                "221",
+                "170",
+                "3730781",
+                "47273663720",
+                "",
+                "",
+                "132",
+                "173",
+                "3730780",
+                "33338412624",
+                "",
+                "none",
+                "033",
+                "165",
+                "3730779",
+                "11246341728",
+                "",
+                "none",
+                "303",
+                "138",
+                "3730778",
+                "9243314137",
+                "",
+                "",
+                "231",
+                "118",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
+            "statistics1": [
+                "312",
+                "321",
+                "240",
+                "231",
+                "303",
+                "221",
+                "132",
+                "033",
+                "303",
+                "231"
+            ],
+            "statistics2": [
+                "12",
+                "19",
+                "22",
+                "45",
+                "48"
+            ],
+            "statistics3": [
+                "3",
+                "27",
+                "37",
+                "42",
+                "46"
+            ],
+            "statistics4": [
+                "20",
+                "18",
+                "20",
+                "19",
+                "20"
+            ],
+            "statistics5": [
+                "6",
+                "6",
+                "5",
+                "6",
+                "5"
+            ]
+        } )
+    }, [ball])
+   
+
+   
 //for Drwas
-    const ballValues1 = ball3.balls.slice(0, 6);
-    const ballValues2 = ball3.balls.slice(6, 12);
-    const ballValues3 = ball3.balls.slice(12, 18);
-    const ballValues4 = ball3.balls.slice(18, 24);
-    const ballValues5 = ball3.balls.slice(24, 30);
-    const ballValues6 = ball3.balls.slice(30, 36);
-    const ballValues7 = ball3.balls.slice(36, 42);
-    const ballValues8 = ball3.balls.slice(42, 48);
-    const ballValues9 = ball3.balls.slice(48, 54);
-    const ballValues10 = ball3.balls.slice(54, 60);
+ 
+        const ballValues1 = ball3.balls.slice(0, 6);
+        const ballValues2 = ball3.balls.slice(6, 12);
+        const ballValues3 = ball3.balls.slice(12, 18);
+        const ballValues4 = ball3.balls.slice(18, 24);
+        const ballValues5 = ball3.balls.slice(24, 30);
+        const ballValues6 = ball3.balls.slice(30, 36);
+        const ballValues7 = ball3.balls.slice(36, 42);
+        const ballValues8 = ball3.balls.slice(42, 48);
+        const ballValues9 = ball3.balls.slice(48, 54);
+        const ballValues10 = ball3.balls.slice(54, 60);
 
-//for ID
+        //for ID
 
-    const ballValue1 = ball3.statistics.slice(0, 1);
-    const ballValue2 = ball3.statistics.slice(6, 7);
-    const ballValue3 = ball3.statistics.slice(12, 13);
-    const ballValue4 = ball3.statistics.slice(18, 19);
-    const ballValue5 = ball3.statistics.slice(24, 25);
-    const ballValue6 = ball3.statistics.slice(30, 31);
-    const ballValue7 = ball3.statistics.slice(36, 37);
-    const ballValue8 = ball3.statistics.slice(42, 43);
-    const ballValue9 = ball3.statistics.slice(48, 49);
-    const ballValue10 = ball3.statistics.slice(54, 55);
+        const ballValue1 = ball3.statistics.slice(0, 1);
+        const ballValue2 = ball3.statistics.slice(6, 7);
+        const ballValue3 = ball3.statistics.slice(12, 13);
+        const ballValue4 = ball3.statistics.slice(18, 19);
+        const ballValue5 = ball3.statistics.slice(24, 25);
+        const ballValue6 = ball3.statistics.slice(30, 31);
+        const ballValue7 = ball3.statistics.slice(36, 37);
+        const ballValue8 = ball3.statistics.slice(42, 43);
+        const ballValue9 = ball3.statistics.slice(48, 49);
+        const ballValue10 = ball3.statistics.slice(54, 55);
 
-// for colours
-    const ballValue11 = ball3.statistics1.slice(0, 1);
-    const ballValue12 = ball3.statistics1.slice(1, 2);
-    const ballValue13 = ball3.statistics1.slice(2, 3);
-    const ballValue14 = ball3.statistics1.slice(3, 4);
-    const ballValue15 = ball3.statistics1.slice(4, 5);
-    const ballValue16 = ball3.statistics1.slice(5, 6);
-    const ballValue17 = ball3.statistics1.slice(6, 7);
-    const ballValue18 = ball3.statistics1.slice(7, 8);
-    const ballValue19 = ball3.statistics1.slice(8, 9);
-    const ballValue20 = ball3.statistics1.slice(9, 10);
+        // for colours
+        const ballValue11 = ball3.statistics1.slice(0, 1);
+        const ballValue12 = ball3.statistics1.slice(1, 2);
+        const ballValue13 = ball3.statistics1.slice(2, 3);
+        const ballValue14 = ball3.statistics1.slice(3, 4);
+        const ballValue15 = ball3.statistics1.slice(4, 5);
+        const ballValue16 = ball3.statistics1.slice(5, 6);
+        const ballValue17 = ball3.statistics1.slice(6, 7);
+        const ballValue18 = ball3.statistics1.slice(7, 8);
+        const ballValue19 = ball3.statistics1.slice(8, 9);
+        const ballValue20 = ball3.statistics1.slice(9, 10);
 
-    const numberArrays1 = ballValues1.map((str) => parseInt(str));
-    const numberArray1 = ballValue1.map((str) => parseInt(str));
-    const numberArray11 = ballValue11.map((str) => parseInt(str));
-    const numberArrays2 = ballValues2.map((str) => parseInt(str));
-    const numberArray2 = ballValue2.map((str) => parseInt(str));
-    const numberArray12 = ballValue12.map((str) => parseInt(str));
-    const numberArrays3 = ballValues3.map((str) => parseInt(str));
-    const numberArray3 = ballValue3.map((str) => parseInt(str));
-    const numberArray13 = ballValue13.map((str) => parseInt(str));
-    const numberArrays4 = ballValues4.map((str) => parseInt(str));
-    const numberArray4 = ballValue4.map((str) => parseInt(str));
-    const numberArray14 = ballValue14.map((str) => parseInt(str));
-    const numberArrays5 = ballValues5.map((str) => parseInt(str));
-    const numberArray5 = ballValue5.map((str) => parseInt(str));
-    const numberArray15 = ballValue15.map((str) => parseInt(str));
-    const numberArrays6 = ballValues6.map((str) => parseInt(str));
-    const numberArray6 = ballValue6.map((str) => parseInt(str));
-    const numberArray16 = ballValue16.map((str) => parseInt(str));
-    const numberArrays7 = ballValues7.map((str) => parseInt(str));
-    const numberArray7 = ballValue7.map((str) => parseInt(str));
-    const numberArray17 = ballValue17.map((str) => parseInt(str));
-    const numberArrays8 = ballValues8.map((str) => parseInt(str));
-    const numberArray8 = ballValue8.map((str) => parseInt(str));
-    const numberArray18 = ballValue18.map((str) => parseInt(str));
-    const numberArrays9 = ballValues9.map((str) => parseInt(str));
-    const numberArray9 = ballValue9.map((str) => parseInt(str));
-    const numberArray19 = ballValue19.map((str) => parseInt(str));
-    const numberArrays10 = ballValues10.map((str) => parseInt(str));
-    const numberArray10 = ballValue10.map((str) => parseInt(str));
-    const numberArray20 = ballValue20.map((str) => parseInt(str));
+        const numberArrays1 = ballValues1.map((str) => parseInt(str));
+        const numberArray1 = ballValue1.map((str) => parseInt(str));
+        const numberArray11 = ballValue11.map((str) => parseInt(str));
+        const numberArrays2 = ballValues2.map((str) => parseInt(str));
+        const numberArray2 = ballValue2.map((str) => parseInt(str));
+        const numberArray12 = ballValue12.map((str) => parseInt(str));
+        const numberArrays3 = ballValues3.map((str) => parseInt(str));
+        const numberArray3 = ballValue3.map((str) => parseInt(str));
+        const numberArray13 = ballValue13.map((str) => parseInt(str));
+        const numberArrays4 = ballValues4.map((str) => parseInt(str));
+        const numberArray4 = ballValue4.map((str) => parseInt(str));
+        const numberArray14 = ballValue14.map((str) => parseInt(str));
+        const numberArrays5 = ballValues5.map((str) => parseInt(str));
+        const numberArray5 = ballValue5.map((str) => parseInt(str));
+        const numberArray15 = ballValue15.map((str) => parseInt(str));
+        const numberArrays6 = ballValues6.map((str) => parseInt(str));
+        const numberArray6 = ballValue6.map((str) => parseInt(str));
+        const numberArray16 = ballValue16.map((str) => parseInt(str));
+        const numberArrays7 = ballValues7.map((str) => parseInt(str));
+        const numberArray7 = ballValue7.map((str) => parseInt(str));
+        const numberArray17 = ballValue17.map((str) => parseInt(str));
+        const numberArrays8 = ballValues8.map((str) => parseInt(str));
+        const numberArray8 = ballValue8.map((str) => parseInt(str));
+        const numberArray18 = ballValue18.map((str) => parseInt(str));
+        const numberArrays9 = ballValues9.map((str) => parseInt(str));
+        const numberArray9 = ballValue9.map((str) => parseInt(str));
+        const numberArray19 = ballValue19.map((str) => parseInt(str));
+        const numberArrays10 = ballValues10.map((str) => parseInt(str));
+        const numberArray10 = ballValue10.map((str) => parseInt(str));
+        const numberArray20 = ballValue20.map((str) => parseInt(str));
     
-    console.log(numberArray11)
-    const data = [{
-        "ID": numberArray1,
-        "property2": numberArrays1,
-        "property3": "value3",
-        "property4": "value4",
-        "property5": numberArray11,
-        "property6": "value6"
-    }, {
-        "ID": numberArray2,
-        "property2": numberArrays2,
-        "property3": "value3",
-        "property4": "value4",
-        "property5": numberArray12,
-        "property6": "value6"
-    }, {
-        "ID": numberArray3,
-        "property2": numberArrays3,
-        "property3": "value3",
-        "property4": "value4",
-        "property5": numberArray13,
-        "property6": "value6"
-    }, {
-        "ID": numberArray4,
-        "property2": numberArrays4,
-        "property3": "value3",
-        "property4": "value4",
-        "property5": numberArray14,
-        "property6": "value6"
-    }, {
-        "ID": numberArray5,
-        "property2": numberArrays5,
-        "property3": "value3",
-        "property4": "value4",
-        "property5": numberArray15,
-        "property6": "value6"
-    }, {
-        "ID": numberArray6,
-        "property2": numberArrays6,
-        "property3": "value3",
-        "property4": "value4",
-        "property5": numberArray16,
-        "property6": "value6"
-    }, {
-        "ID": numberArray7,
-        "property2": numberArrays7,
-        "property3": "value3",
-        "property4": "value4",
-        "property5": numberArray17,
-        "property6": "value6"
-    }, {
-        "ID": numberArray8,
-        "property2": numberArrays8,
-        "property3": "value3",
-        "property4": "value4",
-        "property5": numberArray18,
-        "property6": "value6"
-    }, {
-        "ID": numberArray9,
-        "property2": numberArrays9,
-        "property3": "value3",
-        "property4": "value4",
-        "property5": numberArray19,
-        "property6": "value6"
-    }, {
-        "ID": numberArray10,
-        "property2": numberArrays10,
-        "property3": "value3",
-        "property4": "value4",
-        "property5": numberArray20,
-        "property6": "value6"
-    }]
-    const headerNames = ["ID", "Draw", "Hi Mid Lo", "Win Colour", "Colours", "Total"];
-
+      
+        const data = [{
+            "ID": numberArray1,
+            "property2": numberArrays1,
+            "property3": "value3",
+            "property4": "value4",
+            "property5": numberArray11,
+            "property6": "value6"
+        }, {
+            "ID": numberArray2,
+            "property2": numberArrays2,
+            "property3": "value3",
+            "property4": "value4",
+            "property5": numberArray12,
+            "property6": "value6"
+        }, {
+            "ID": numberArray3,
+            "property2": numberArrays3,
+            "property3": "value3",
+            "property4": "value4",
+            "property5": numberArray13,
+            "property6": "value6"
+        }, {
+            "ID": numberArray4,
+            "property2": numberArrays4,
+            "property3": "value3",
+            "property4": "value4",
+            "property5": numberArray14,
+            "property6": "value6"
+        }, {
+            "ID": numberArray5,
+            "property2": numberArrays5,
+            "property3": "value3",
+            "property4": "value4",
+            "property5": numberArray15,
+            "property6": "value6"
+        }, {
+            "ID": numberArray6,
+            "property2": numberArrays6,
+            "property3": "value3",
+            "property4": "value4",
+            "property5": numberArray16,
+            "property6": "value6"
+        }, {
+            "ID": numberArray7,
+            "property2": numberArrays7,
+            "property3": "value3",
+            "property4": "value4",
+            "property5": numberArray17,
+            "property6": "value6"
+        }, {
+            "ID": numberArray8,
+            "property2": numberArrays8,
+            "property3": "value3",
+            "property4": "value4",
+            "property5": numberArray18,
+            "property6": "value6"
+        }, {
+            "ID": numberArray9,
+            "property2": numberArrays9,
+            "property3": "value3",
+            "property4": "value4",
+            "property5": numberArray19,
+            "property6": "value6"
+        }, {
+            "ID": numberArray10,
+            "property2": numberArrays10,
+            "property3": "value3",
+            "property4": "value4",
+            "property5": numberArray20,
+            "property6": "value6"
+        }]
+        const headerNames = ["ID", "Draw", "Hi Mid Lo", "Win Colour", "Colours", "Total"];
+ 
 
 
    
@@ -228,7 +597,7 @@ const Table = ({ball}) => {
                                     highestColor = color;
                                     none = ""
                                 } else if (count === highestCount) {
-                                    highestColor = "none";
+                                    highestColor = "";
                                     none = "none"
                                 }
                             });
@@ -299,11 +668,11 @@ const Table = ({ball}) => {
 
                                         const number = data;
                                         const digits = Array.from(number.toString()).map(Number);
-
+                                
                                         return <>
                                             <h1 style={{ width: "31px", height: "30px", backgroundColor: "#c62b18", display: "flex", justifyContent: "center", alignItems: "center" }}>{digits[0]}</h1> &nbsp;&nbsp;
                                             <h1 style={{ width: "31px", height: "30px", backgroundColor: "#178917", display: "flex", justifyContent: "center", alignItems: "center" }}>{digits[1]}</h1>&nbsp;&nbsp;
-                                            <h1 style={{ width: "31px", height: "30px", backgroundColor: "#127ac2", display: "flex", justifyContent: "center", alignItems: "center" }}>{digits[2]}</h1>
+                                            <h1 style={{ width: "31px", height: "30px", backgroundColor: "#127ac2", display: "flex", justifyContent: "center", alignItems: "center" }}>{!digits[2] ? 0 : digits[2] }</h1>
 
                                         </>
                                     })}

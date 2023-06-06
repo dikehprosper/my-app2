@@ -5,6 +5,10 @@ import Body2 from "../components/SecondSection";
 import Body3 from "../components/ThirdSection";
 import CountDown from "../components/CountDown";
 import Draw from "../components/Draw";
+import StartFirebase from "../components/FirebaseConfig/index";
+
+import { ref, set, get } from "firebase/database";
+
 
 const Home = () => {
   const [show, setShow] = useState(true);
@@ -14,7 +18,9 @@ const Home = () => {
   const [ball1, setBall1] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [ball2, setBall2] = useState([]);
-  const [ball3, setBall3] = useState();
+  const [ball3, setBall3] = useState(null); 
+
+ 
 
   useEffect(() => {
     if (!triggerUpdateState) {
@@ -44,8 +50,20 @@ const Home = () => {
 
           setBall(numberArray);
           console.log(numberArray, numberArray1)
-        
+          // setBall3([data]);
           setBall2(data);
+
+          const newData = data; // Create a copy of the original data array
+
+          if (newData.length > 0) {
+            const firstObject = newData[0]; // Get the first object
+
+            if (Array.isArray(firstObject)) {
+              newData[0] = firstObject.slice(6); // Remove the first six elements
+            }
+          }
+          console.log(newData)
+         
           setHotNumbers(numberArray2);
           setColdNumbers(numberArray3);
           setHotNumbersFrequency(numberArray4);
@@ -60,6 +78,9 @@ const Home = () => {
   }, [triggerUpdateState]);
   
 
+
+
+
   // useEffect(() => {
   //   if (!triggerUpdateState) {
   //     // // Generate 6 random numbers from 1 to 48
@@ -73,31 +94,6 @@ const Home = () => {
   // console.log(ball);
 
  
-
-  useEffect(() => {
-    if (triggerUpdateState && currentIndex < ball.length) {
-      setTimeout(() => {
-        setBall1((prevBall) => {
-          const newNumber = ball[currentIndex];
-          const lastNumber = prevBall[prevBall.length - 1];
-
-          if (newNumber !== lastNumber && !prevBall.includes(newNumber)) {
-            return [...prevBall, newNumber];
-          }
-          return prevBall;
-        });
-
-        setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, 500);
-      setBall3(ball2)
-      // Delay between each number update
-    } else if (!triggerUpdateState) {
-      setTimeout(() => {
-        setBall1([]);
-        setCurrentIndex(0);
-      }, 7000); // Wait for 5 seconds after triggerUpdateState is set to false
-    }
-  }, [triggerUpdateState, currentIndex]);
 
 
 
@@ -180,10 +176,6 @@ const Home = () => {
  
 
 
-
-
-
-
   // To get Cold Numbers Frequency
   useEffect(() => {
 
@@ -196,6 +188,8 @@ const Home = () => {
     }
   }, [triggerUpdateState]);
 
+
+
   useEffect(() => {
     const storedColdNumbersFrequency1 = localStorage.getItem(
       "coldNumbersFrequency1"
@@ -207,16 +201,8 @@ const Home = () => {
 
 
 
-
-
-
-
-
-
   function display() {
-    setShow((show) => {
-      return !show;
-    });
+    setShow(!show);
   }
 
   function changeShowState() {
@@ -238,27 +224,45 @@ const Home = () => {
 
 
 
-
-
-
-
   
 
   // Countdown section
+  const [count, setCount] = useState();
+  const [activeButton, setActiveButton] = useState();
 
-  const [count, setCount] = useState(() => {
-    const storedCount = localStorage.getItem("count");
-    return storedCount ? parseInt(storedCount, 10) : 49;
-  });
-  const [activeButton, setActiveButton] = useState(() => {
-    const storedActiveButton = localStorage.getItem("activeButton");
-    return storedActiveButton ? parseInt(storedActiveButton, 10) : 0;
-  });
 
   useEffect(() => {
-    localStorage.setItem("count", count.toString());
-    localStorage.setItem("activeButton", activeButton.toString());
-  }, [count, activeButton]);
+    const fetchCountdown = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/countdown");
+        if (response.ok) {
+          const data = await response.json();
+          setCount(data.count);
+          setActiveButton(data.activeButton);
+        } else {
+          // Handle error response
+        }
+      } catch (error) {
+        // Handle network or other errors
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        fetchCountdown(); // Run fetchCountdown when the tab becomes visible again
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    fetchCountdown(); // Run fetchCountdown initially
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+
 
   console.log(count);
   useEffect(() => {
@@ -268,8 +272,8 @@ const Home = () => {
         setActiveButton((prevButton) => prevButton + 1);
       } else {
         clearInterval(interval);
-        fetchData();
-        restartCountdown();
+       
+        restartCountdown()
       }
 
       if (count === 5) {
@@ -287,29 +291,16 @@ const Home = () => {
     };
   }, [count]);
 
-  const fetchData = async () => {
-    try {
-      // Make the request here
-      // Example using fetch API
-      const response = await fetch("your-api-endpoint");
-      // Check if the response was successful
-      if (response.ok) {
-        // Process the successful response here
-        // ...
-      } else {
-        // Handle the error response here
-        // ...
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      // Handle the error here
-    }
-  };
+
+
+
+ 
 
   const restartCountdown = () => {
     setCount(49);
     setActiveButton(4);
   };
+
 
   const renderButtons = () => {
     const buttons = [];
@@ -334,11 +325,125 @@ const Home = () => {
     return buttons;
   };
 
+
+
+
+
+
+  useEffect(() => {
+    console.log(currentIndex, ball.length)
+    if (triggerUpdateState && currentIndex < ball.length ) {
+      console.log(currentIndex, ball.length)
+      setTimeout(() => {
+        setBall1((prevBall) => {
+          const newNumber = ball[currentIndex];
+          const lastNumber = prevBall[prevBall.length - 1];
+
+          if (newNumber !== lastNumber && !prevBall.includes(newNumber)) {
+            return [...prevBall, newNumber];
+          }
+          return prevBall;
+        });
+
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+      }, 500);
+    
+    
+      setBall3(ball2);
+      localStorage.setItem("ball3", JSON.stringify(ball2));
+
+      // Delay between each number update
+    } else if (!triggerUpdateState) {
+      setTimeout(() => {
+        setBall1([]);
+        setCurrentIndex(0);
+      }, 7000); // Wait for 5 seconds after triggerUpdateState is set to false
+    }
+  }, [triggerUpdateState, currentIndex]);
+
+
+
+  useEffect(() => {
+    const ball4 = localStorage.getItem(
+      "ball3"
+    );
+    if (ball4) {
+      setBall3(JSON.parse(ball4));
+    }
+  }, []);
+
+
+
+
+
+  
+  const [totalBalance, SetTotalBalance] = useState(); 
+  console.log(totalBalance)
  
+  function updateCustomerData(value) {
+    SetTotalBalance(totalBalance+value)
+  }
+
+
+
+  function EditTotalBalance(value)  {
+    SetTotalBalance(totalBalance-value)
+  }
+
+  function editTotalBalance(value) {
+    SetTotalBalance(totalBalance + value)
+  }
+
+  const [db, setDb] = useState(StartFirebase());
+  const [customerData, setCustomerData] = useState([]);
+
+
+  useEffect(() => {
+    retrieveData();
+  }, []);
+
+  const retrieveData = () => {
+    const arrayRef = ref(db, "Customer");
+
+    get(arrayRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const existingData = snapshot.val();
+          const dataArray = Array.isArray(existingData) ? existingData : [];
+          const lastIndex = dataArray.length - 1;
+          const lastObject = dataArray[lastIndex];
+          const value5 = lastObject.totalBalance;
+          console.log(value5)
+          let formattedNumber;
+          if (Number.isInteger(value5)) {
+            formattedNumber = value5.toFixed(0);
+          } else {
+            formattedNumber = value5.toFixed(1);
+          }
+      
+
+          SetTotalBalance(value5);
+        } else {
+          SetTotalBalance(10000);
+        }
+      })
+      .catch((error) => {
+        alert("There was an error. Details: " + error);
+      });
+  };
+
+
+
+
+
+
+  
+
 
   return (
     <div className="body">
-      <Header />
+      <Header totalBalance={totalBalance}
+        retrieveData={retrieveData}/>
 
       <div style={{ display: "flex", marginTop: "0.5px" }}>
         <Body1
@@ -351,19 +456,30 @@ const Home = () => {
           coldNumbers={coldNumbers1}
           coldNumbersFrequency={coldNumbersFrequency1}
         />
-        {show ? (
+  
           <Body2
+            show={show}
             changeShowState={changeShowState}
             showState={showState}
             backgroundColor={backgroundColor}
             handleClick={handleClick}
+            count={count}
+            ball3={ball3}
+          ball={ball}
+          ball1={ball1}
+            EditTotalBalance={EditTotalBalance}
+            editTotalBalance={editTotalBalance}
+            totalBalance={totalBalance}
+            updateCustomerData={updateCustomerData}time
           />
-        ) : (
-            <Body3
-              ball3= {ball3} />
-        )}
+       
+          <Body3
+            show={show}
+            ball3={ball3}
+          />
+   
       </div>
-      <CountDown count={49} renderButtons={renderButtons} />
+      <CountDown count={count-4} renderButtons={renderButtons} />
       <Draw
         ball={ball}
         ball3={ball3}

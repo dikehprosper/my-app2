@@ -450,7 +450,7 @@ input:focus {
   display: flex;
   width: 100.2%;
   height: 84px;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
 }
 
 .f1 {
@@ -483,16 +483,27 @@ input:focus {
   background-color: rgba(255, 255, 255, 0.164);
 }
 
+.f12-1:hover {
+  opacity: 0.5;
+  background-color: rgba(255, 255, 255, 0.164);
+}
+
 .f18 {
   width: 100%;
 }
 
 .f8 {
-  width: 99.8%;
+  width: 916px;
   height: 495px;
   border-left: 2px solid #252525;
-  border-bottom: 2px solid #252525;
+ 
   border-top: 2px solid black;
+}
+
+.f8-12{
+  margin-top: 3px;
+  display: flex;
+width: 100%;
 }
 .f5 {
   margin-top: 1px;
@@ -511,8 +522,8 @@ input:focus {
 }
 
 .f20 {
-  width: 99.8%;
-  height: 492px;
+  width: 912px;
+  height: 499px;
   border: 2px solid #28375c;
   display: flex;
   flex-direction: column;
@@ -607,6 +618,7 @@ background-color: rgba(255, 255, 255, 0.178);
   justify-content: end;
   align-items: end;
   align-content: flex-end;
+  margin-left: 6px;
 }
 
 .f28 {
@@ -877,10 +889,14 @@ cursor: pointer;
 #draw5 {
   position: absolute;
   width: 97.5px;
-  height: 934px;
+  height:434px;
   z-index: 30000;
   left: 760px;
-  bottom: -363.5px;
+  bottom: -130.5px;
+}
+
+.unclickable {
+  pointer-events: none;
 }
 
 #draw5 > img {
@@ -1006,7 +1022,7 @@ cursor: pointer;
 }
 
 .imageBackground {
-  height: 52px;
+  height: 52.5px;
   width: 127px;
   position: absolute;
   background-image: url("./components/images/image22.png");
@@ -1017,7 +1033,7 @@ cursor: pointer;
   justify-content: center;
   align-items: center;
   left: 1255px;
-  top: -0.1px;
+  top: -0.01px;
   z-index: 5000;
   transform: translateY(0%);
 }
@@ -1169,4 +1185,129 @@ tbody {
   height: 30px;
   margin-top: 8px;
   margin-left: 21px;
+}
+
+.formatSelectedBalls{
+  font-weight: 900;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.slide-in {
+  animation: slideInAnimation .5s ease-in;
+  background-color: #CFCFCF;
+
+}
+
+.slide-in:hover {
+    background-color: white;
+}
+
+@keyframes slideInAnimation {
+  0% {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.bet-details {
+  height: 274px;
+  width: 250px;
+  background-color: white;
+  position: absolute;
+  left: -270px;
+  font-size: 20px;
+  z-index: 1000000;
+  top: 0px;
+  border: 2px solid black;
+  border-radius: 13px;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 3.5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+ .row-1 {
+   height: 50px;
+   background-color: white; display: flex;
+border-radius: 13px 13px 0px 0px;
+font-weight: 700;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-left: 10px;
+  gap: 10px;
+  padding: 0px 3px;
+ }
+
+
+.row {
+  height: 27px;
+background-color: #c0c0c0;
+  width: 100%;
+   display: flex;
+   justify-content: space-between;
+   font-size: 15px;
+   font-weight: 800;
+    align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+  /* Default background color */
+}
+.row>span {
+  margin-left: 3px;
+}
+
+.row1 {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  height: 28px;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: 800;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+  /* Background color for even rows */
+}
+
+.row1>span {
+  margin-left: 3px;
+}
+
+.row-2 {
+ 
+  background-color: white;
+  display: flex;
+  height: 32px;
+  border-radius: 0px 0px 13px 13px ;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: 800;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.row-2 >span {
+  margin-left: 3px;
+}
+
+.span2 {
+  margin-right: 3px;
+}
+
+.youtube-video {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+}
+.overlay {
+  display: flex;
+  width: 100%;
+  height: 100%;
+    background-color: white;
 }
