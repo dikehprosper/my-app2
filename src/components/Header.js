@@ -31,6 +31,15 @@ const Header = ({ totalBalance, retrieveData }) => {
     //     setTotalBalance1(formattedNumber)
     // }, [totalBalance])
 
+    function approximateNumber() {
+        const roundedNumber = parseFloat(totalBalance.toFixed(1));
+
+        if (Number.isInteger(roundedNumber)) {
+            return roundedNumber.toFixed(0);
+        } else {
+            return roundedNumber.toString();
+        }
+    }
 
     return (
         <div className="top">
@@ -45,7 +54,7 @@ const Header = ({ totalBalance, retrieveData }) => {
                     Balance:
                     <div className="a4">
                         <div className="a11"> </div>
-                        <div className="a12"><span>{totalBalance}</span></div>
+                        <div className="a12"><span>{totalBalance && approximateNumber()}</span></div>
                     </div>
 
                 </div>

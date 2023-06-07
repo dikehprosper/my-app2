@@ -4,7 +4,9 @@ import image13 from "./images/image13.png"
 import image14 from "./images/image14.png"
 import image25 from "./images/image25.png"
 import image15 from "./images/image15.png"
+import draw20 from "./images/draw20.png"
 import { v4 as uuidv4 } from 'uuid';
+import videobg from "./Win.mp4"
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs"
 
 const balls = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
@@ -12,7 +14,7 @@ const balls = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
     36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]
 const balls2 = [49]
 
-const BetZeroSection = ({ handleBallClick, selectedBalls, count, callBetNumber, inputValue, handleInputChange2 }) => {
+const BetZeroSection = ({ handleBallClick, videoView, selectedBalls, count, callBetNumber, inputValue, handleInputChange2 }) => {
 
     const [isHovered, setIsHovered] = useState(true);
 
@@ -107,8 +109,30 @@ const BetZeroSection = ({ handleBallClick, selectedBalls, count, callBetNumber, 
         callBetNumber();
     }
 
+ 
+    
+    function approximateNumber() {
+        const roundedNumber = parseFloat(videoView.toFixed(1));
+
+        if (Number.isInteger(roundedNumber)) {
+            return roundedNumber.toFixed(0);
+        } else {
+            return roundedNumber.toString();
+        }
+    }
+
+
     return (
         <div className='f20'>
+
+            {videoView ? <div style={{ position: "absolute", zIndex: "100000", height: "497px", width: "882px", bottom: "170px", left: "253px", top: "125px" }}>
+
+              <div className="image-value" style={{position:"absolute", zIndex:"1000000", color:"white", top:"290px", heigth:"10px", left:"180px"}}>
+                    <img src={draw20} alt='' height="101px" width="400px"/> </div>
+                <video src={videobg} autoPlay loop muted /> 
+                <h2 style={{ position: "absolute", zIndex: "100000000", color: "white", top: "222px", display: "flex", justifyContent: 'center', left: 0, right: 0, fontSize: "70px", fontWeight: 'bold' }}> NGN &nbsp;{videoView && approximateNumber()}</h2>    </div> : null} 
+           
+           
             <div className='f21'>
                 <div className='f24'>
                     <div className='f26'> Predict which numbers NOT will appear in the draw. <br />
@@ -116,7 +140,7 @@ const BetZeroSection = ({ handleBallClick, selectedBalls, count, callBetNumber, 
                     </div>
                     <div className='f27'>
                        
-
+  
                         {balls.map((ball, index) => {
                             const color = colors[index % colors.length];
                             const isSelected = selectedBalls.includes(ball);

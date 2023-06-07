@@ -11,6 +11,7 @@ import BetZeroSection from './BetZeroSection'
 import { nanoid } from 'nanoid'
 import Bets from './Bets'
 
+
 const Body2 = (props) => {
 
     const [selectedBalls, setSelectedBalls] = useState([]);
@@ -80,7 +81,7 @@ const Body2 = (props) => {
 
 
     useEffect(() => {
-        if (props.count === 49) {
+        if (props.count === 48) {
             setBetNumber([])
         }
     }, [props.count])
@@ -153,10 +154,26 @@ const Body2 = (props) => {
         });
         setBetNumber(result);
     }
+    const [videoView, setVideoView] = useState()
+    function callShow(value) {
+        setVideoView(value)
+    }
 
+    useEffect(() => {
+        if (videoView) {
+            const timer = setTimeout(() => {
+                // Your function to be executed after 2 seconds
+                setVideoView()
+                // Perform any other actions here
+            }, 2000);
 
+            return () => clearTimeout(timer);
+        }
+    }, [videoView]);
 
     return (<div style={{ display: `${props.show ? "flex" : "none"}`, width: "100%", marginRight: "22px", height: "585px", marginBottom: "2px", overflow: "hidden" }}>
+
+
         <div style={{ display: "flex", width: "914px", flexDirection: "column", height: "" }}>
             <div className='f0'>
                 <div className='f11'>
@@ -189,7 +206,7 @@ const Body2 = (props) => {
                 </div>
             </div>
             {
-                props.showState ? <div className='f8-12'> <img src={image10} alt="logo" className='f8' /></div> : <BetZeroSection count={props.count} handleBallClick={handleBallClick} selectedBalls={selectedBalls} callBetNumber={callBetNumber} inputValue={inputValue} handleInputChange2={handleInputChange2} />}
+                props.showState ? <div className='f8-12'> <img src={image10} alt="logo" className='f8' /></div> : <BetZeroSection videoView={videoView} count={props.count} handleBallClick={handleBallClick} selectedBalls={selectedBalls} callBetNumber={callBetNumber} inputValue={inputValue} handleInputChange2={handleInputChange2} />}
 
         </div>
         <div style={{ display: "flex", width: "25%", marginLeft: "6px", flexDirection: "column" }}>
@@ -216,6 +233,7 @@ const Body2 = (props) => {
                         ball1={props.ball1}
                         totalBalance={props.totalBalance}
                         updateCustomerData={props.updateCustomerData}
+                        callShow={callShow}
                     />
                 ))}
 

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import betZeroLogo from "./images/betZeroLogo.png"
 import StartFirebase from "./FirebaseConfig/index";
 import { ref, set, get } from "firebase/database";
-const Bets = ({ totalBalance, selectedBalls, ball1, date, inputValue, EditTotalBalance,updateCustomerData, show3, id, currentShow, drawId, betId, time, count, ball, editTotalBalance }) => {
+
+const Bets = ({ totalBalance, selectedBalls, callShow, ball1, date, inputValue, EditTotalBalance,updateCustomerData, show3, id, currentShow, drawId, betId, time, count, ball, editTotalBalance }) => {
 
     const [show, setShow] = useState(false)
     const [db, setDb] = useState(StartFirebase());
@@ -187,6 +188,7 @@ const Bets = ({ totalBalance, selectedBalls, ball1, date, inputValue, EditTotalB
             updateCustomerData(inputValue * odd())
             setShow(true);
             insertData1()
+            callShow(inputValue * odd())
             console.log("Numbers not found in ball array");
         } else if (count < 1 && !notFound){
             console.log(odd())
@@ -234,7 +236,7 @@ const Bets = ({ totalBalance, selectedBalls, ball1, date, inputValue, EditTotalB
             <div className="row1">
                 <span>Details:</span>
                 <span className='span2' style={{ display: "flex", gap: "4px", alignItems: "center", justifyContent: "center" }}>
-
+                       
                     {selectedBalls.map((number, index) => {
 
                         let backgroundColor;
