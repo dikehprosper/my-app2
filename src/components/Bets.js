@@ -223,7 +223,7 @@ const Bets = ({ totalBalance, selectedBalls, callShow, ball1, date, inputValue, 
             <div className="row-1"><img src={betZeroLogo} alt="" height="37px" width="43px" /> <span className='bet-zero'>Bet Zero</span></div>
             <div className="row">
                 <span>Date:</span>
-                <span className='span2'>{time}</span>
+                    <span className='span2'>{date} {time}</span>
             </div>
             <div className="row1">
                 <span>Bet ID:</span>

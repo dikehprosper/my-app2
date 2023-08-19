@@ -153,7 +153,9 @@ const Body2 = (props) => {
             return data;
         });
         setBetNumber(result);
-    }
+    };
+
+
     const [videoView, setVideoView] = useState()
     function callShow(value) {
         setVideoView(value)

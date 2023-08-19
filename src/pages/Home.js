@@ -25,7 +25,7 @@ const Home = () => {
   useEffect(() => {
     if (!triggerUpdateState) {
       // Make the request here
-      const url = 'http://localhost:5000/fetch-data';
+      const url = 'http://localhost:5000/fetch';
       fetch(url)
         .then(response => {
           if (!response.ok) {
@@ -424,7 +424,7 @@ const Home = () => {
 
           SetTotalBalance(value5);
         } else {
-          SetTotalBalance(10000);
+          SetTotalBalance(5000000);
         }
       })
       .catch((error) => {

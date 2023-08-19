@@ -828,6 +828,8 @@ cursor: pointer;
   animation-fill-mode: both;
 }
 
+
+
 .animate {
   animation-name: rollOutToLeft;
   /* Change the animation name to rollOutToLeft */
@@ -846,6 +848,8 @@ cursor: pointer;
     opacity: 1;
   }
 }
+
+
 
 @keyframes rollOutToLeft {
   0% {
