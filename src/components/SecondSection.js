@@ -178,23 +178,43 @@ const Body2 = (props) => {
 
         <div style={{ display: "flex", width: "914px", flexDirection: "column", height: "" }}>
             <div className='f0'>
-                <div className='f11'>
+                <div className='f11' onClick={() => {
+                    props.changeShowState();
+                    props.handleClick()
+
+                }}>
                     <img src={image4} alt="logo" className='f1 f2' />
                     <div className='f12'></div>
                 </div>
-                <div className='f11'>
+                <div className='f11' onClick={() => {
+                    props.changeShowState();
+                    props.handleClick()
+
+                }}>
                     <img src={image5} alt="logo" className='f1 f3' />
                     <div className='f12'></div>
                 </div>
-                <div className='f11'>
+                <div className='f11' onClick={() => {
+                    props.changeShowState();
+                    props.handleClick()
+
+                }}>
                     <img src={image6} alt="logo" className='f1 f4' />
                     <div className='f12'></div>
                 </div>
-                <div className='f11'>
+                <div className='f11' onClick={() => {
+                    props.changeShowState();
+                    props.handleClick()
+
+                }}>
                     <img src={image7} alt="logo" className='f1 f5' />
                     <div className='f12'></div>
                 </div>
-                <div className='f11'>
+                <div className='f11' onClick={() => {
+                    props.changeShowState();
+                    props.handleClick()
+
+                }}>
                     <img src={image8} alt="logo" className='f1 f6' />
                     <div className='f12'></div>
                 </div>
